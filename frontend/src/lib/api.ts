@@ -37,6 +37,59 @@ export interface GameBreakdown {
   tickets: number
 }
 
+export type OverTimeBucket = 'month' | 'week'
+
+export interface OverTimePoint {
+  /** 'YYYY-MM' for month buckets, 'YYYY-Www' for week buckets. */
+  period: string
+  spent_cents: number
+  won_cents: number
+  net_cents: number
+}
+
+export interface PickSideBreakdown {
+  lines: number
+  wins: number
+  win_rate: number
+}
+
+export interface PickBreakdown {
+  quick_pick: PickSideBreakdown
+  self_pick: PickSideBreakdown
+}
+
+export interface InviteResponse {
+  token: string
+  email: string
+  expires_at: string
+}
+
+export interface IngestSummary {
+  games_ingested?: number
+  draws_created?: number
+  results_created?: number
+  [key: string]: unknown
+}
+
+export interface DrawCreate {
+  game_key: string
+  draw_date: string // 'YYYY-MM-DD'
+  winning_main: number[]
+  winning_special?: number | null
+  multiplier?: number | null
+  payouts?: Record<string, number> | null
+  draw_period?: string | null
+}
+
+export interface DrawCreateResponse {
+  draw: Draw
+  results_created: number
+}
+
+export interface MatchResponse {
+  results_created: number
+}
+
 export interface TicketLine {
   id: number | string
   line_index: number
@@ -171,6 +224,38 @@ export async function fetchSummary(): Promise<AnalyticsSummary> {
 
 export async function fetchByGame(): Promise<GameBreakdown[]> {
   const { data } = await api.get<GameBreakdown[]>('/analytics/by-game')
+  return data
+}
+
+export async function fetchOverTime(bucket: OverTimeBucket = 'month'): Promise<OverTimePoint[]> {
+  const { data } = await api.get<OverTimePoint[]>('/analytics/over-time', {
+    params: { bucket },
+  })
+  return data
+}
+
+export async function fetchPickBreakdown(): Promise<PickBreakdown> {
+  const { data } = await api.get<PickBreakdown>('/analytics/pick-breakdown')
+  return data
+}
+
+export async function createInvite(email: string): Promise<InviteResponse> {
+  const { data } = await api.post<InviteResponse>('/invites/', { email })
+  return data
+}
+
+export async function ingestResults(): Promise<IngestSummary> {
+  const { data } = await api.post<IngestSummary>('/results/ingest', {})
+  return data
+}
+
+export async function createDraw(body: DrawCreate): Promise<DrawCreateResponse> {
+  const { data } = await api.post<DrawCreateResponse>('/results/draws', body)
+  return data
+}
+
+export async function rematchResults(): Promise<MatchResponse> {
+  const { data } = await api.post<MatchResponse>('/results/match', {})
   return data
 }
 
