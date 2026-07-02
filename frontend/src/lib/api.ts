@@ -56,18 +56,51 @@ export interface TicketResult {
   draw_id: number | string
 }
 
+/** Add-ons is a flag map, e.g. { power_play: true } / { extra: true } / { fireball: true }. */
+export type AddOns = Record<string, boolean>
+
 export interface Ticket {
   id: number | string
   game_key: string
   purchase_date: string
   num_draws: number
-  add_ons: string[] | null
+  add_ons: AddOns | null
   entry_method: string | null
   total_cost_cents: number
   created_at: string
   lines: TicketLine[]
   results: TicketResult[]
   total_won_cents: number
+}
+
+/** Shape sent to POST /api/tickets (mirrors backend PlayLineIn). */
+export interface PlayLineIn {
+  main_numbers: number[]
+  special_number?: number | null
+  play_type?: string | null
+  wager_cents?: number
+  is_quick_pick?: boolean
+}
+
+export interface TicketCreate {
+  game_key: string
+  purchase_date: string // 'YYYY-MM-DD'
+  num_draws: number
+  add_ons: AddOns
+  entry_method: 'manual' | 'ocr'
+  lines: PlayLineIn[]
+}
+
+/** Draft returned by POST /api/ocr/scan — shaped like TicketCreate, plus meta. */
+export interface OcrDraft {
+  game_key: string
+  purchase_date: string
+  num_draws: number
+  add_ons: AddOns
+  lines: PlayLineIn[]
+  confidence: Record<string, number>
+  flags: string[]
+  image_path?: string | null
 }
 
 export interface Draw {
@@ -148,6 +181,24 @@ export async function fetchTickets(): Promise<Ticket[]> {
 
 export async function fetchTicket(id: string): Promise<Ticket> {
   const { data } = await api.get<Ticket>(`/tickets/${id}`)
+  return data
+}
+
+export async function createTicket(body: TicketCreate): Promise<Ticket> {
+  const { data } = await api.post<Ticket>('/tickets/', body)
+  return data
+}
+
+export async function deleteTicket(id: string): Promise<void> {
+  await api.delete(`/tickets/${id}`)
+}
+
+export async function scanTicket(file: File): Promise<OcrDraft> {
+  const form = new FormData()
+  form.append('file', file)
+  const { data } = await api.post<OcrDraft>('/ocr/scan', form, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  })
   return data
 }
 

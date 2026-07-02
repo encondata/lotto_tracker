@@ -1,0 +1,130 @@
+.page {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.back {
+  align-self: flex-start;
+}
+
+/* game hero strip in the game's color */
+.hero {
+  position: relative;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-card);
+}
+.heroGlow {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  pointer-events: none;
+}
+.heroTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.heroName {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+}
+.heroMeta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  position: relative;
+}
+
+.totals {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.totalCard {
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  background: var(--ink-2);
+  padding: 16px 18px;
+}
+.totalLabel {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.62rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+.totalVal {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.7rem;
+  margin-top: 4px;
+}
+
+.lineRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.lineRow:last-child {
+  border-bottom: none;
+}
+.lineLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.lineIdx {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  min-width: 24px;
+}
+.lineTag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.lineResult {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  text-align: right;
+}
+.tier {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ivory);
+}
+.tierSub {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.deleteRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.confirmText {
+  color: var(--loss);
+  font-size: 0.88rem;
+}

@@ -55,8 +55,8 @@ export const GAMES: Record<string, GameMeta> = {
     specialMin: 1,
     specialMax: 35,
   },
-  daily_4: {
-    key: 'daily_4',
+  daily4: {
+    key: 'daily4',
     name: 'Daily 4',
     color: 'var(--d4)',
     mainCount: 4,
@@ -64,7 +64,8 @@ export const GAMES: Record<string, GameMeta> = {
     mainMax: 9,
     hasSpecial: false,
     isDaily4: true,
-    playTypes: ['straight', 'box', 'straight_box', 'combo'],
+    // Must match backend validation (app/services/tickets.py DAILY4_PLAY_TYPES).
+    playTypes: ['straight', 'box', 'combo', 'pair-front', 'pair-mid', 'pair-back'],
   },
 }
 
