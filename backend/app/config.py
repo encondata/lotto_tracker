@@ -9,6 +9,8 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     database_url: str = "postgresql+psycopg://lotto:lotto@localhost:5433/lotto"
+    jwt_secret: str = "dev-secret-change-me"
+    jwt_expire_minutes: int = 60 * 24 * 7
     # NoDecode disables pydantic-settings' default JSON decoding of the env value,
     # so a plain comma-separated string like "*" or "http://a,http://b" is accepted
     # and split by the validator below (bare "*" is not valid JSON).
