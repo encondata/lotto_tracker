@@ -1,0 +1,143 @@
+/* ==========================================================================
+   Lone Star Draw Room — design tokens
+   A late-night lottery studio. Shared identity for all passes.
+   ========================================================================== */
+
+:root {
+  /* Surfaces / ink */
+  --ink: #0a1410;
+  --ink-2: #0e1b15;
+  --surface: #12241c;
+  --surface-2: #183026;
+  --line: rgba(230, 240, 230, 0.09);
+
+  /* Text */
+  --ivory: #f5f0e6;
+  --muted: #9fb3a6;
+
+  /* Accents */
+  --mint: #5fe3b0;
+  --mint-deep: #2fb889;
+  --brass: #e8b455;
+  --brass-deep: #c9922e;
+  --loss: #d2694f;
+
+  /* Game brand colors */
+  --pb: #e4002b;   /* Powerball */
+  --mm: #2e7db2;   /* Mega Millions */
+  --lt: #f2a900;   /* Lotto Texas */
+  --ts: #8a6dbe;   /* Texas Two Step */
+  --d4: #00a38c;   /* Daily 4 / Pick 3 family */
+
+  /* Type */
+  --font-display: 'Bricolage Grotesque', 'Instrument Sans', system-ui, sans-serif;
+  --font-body: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* Radii */
+  --r-card: 16px;
+  --r-pill: 999px;
+  --r-sm: 10px;
+
+  /* Shadows / glows */
+  --shadow-card: 0 18px 40px -24px rgba(0, 0, 0, 0.9), 0 2px 8px -4px rgba(0, 0, 0, 0.6);
+  --shadow-glow-mint: 0 0 0 1px rgba(95, 227, 176, 0.25), 0 12px 40px -18px rgba(95, 227, 176, 0.35);
+  --shadow-glow-brass: 0 0 0 1px rgba(232, 180, 85, 0.3), 0 12px 40px -16px rgba(232, 180, 85, 0.4);
+  --focus-ring: 0 0 0 3px rgba(95, 227, 176, 0.55);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 0.4s;
+}
+
+/* ----- Reset-ish base ----- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ivory);
+  background-color: var(--ink);
+  /* Felt vignette */
+  background-image:
+    radial-gradient(1200px 800px at 20% -10%, rgba(95, 227, 176, 0.06), transparent 60%),
+    radial-gradient(1000px 700px at 100% 0%, rgba(232, 180, 85, 0.05), transparent 55%),
+    radial-gradient(1400px 1000px at 50% 120%, rgba(0, 0, 0, 0.55), transparent 60%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--ivory);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Eyebrow / label convention */
+.eyebrow {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Accessible focus */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 6px;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-2);
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
