@@ -1,0 +1,126 @@
+.page {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+/* top segmented mode control */
+.modeSeg {
+  display: inline-flex;
+  padding: 5px;
+  gap: 5px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--ink-2);
+  width: fit-content;
+}
+.modeBtn {
+  padding: 9px 22px;
+  border-radius: var(--r-pill);
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.modeBtnActive {
+  background: var(--surface-2);
+  color: var(--ivory);
+  box-shadow: inset 0 0 0 1px rgba(95, 227, 176, 0.25);
+}
+
+/* dropzone */
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 48px 24px;
+  border: 1.5px dashed var(--line);
+  border-radius: var(--r-card);
+  background: var(--ink-2);
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.dropzone:hover,
+.dropzoneOver {
+  border-color: rgba(95, 227, 176, 0.5);
+  background: var(--surface);
+}
+.dropIcon {
+  font-size: 2.2rem;
+}
+.dropTitle {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+.dropSub {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.hiddenInput {
+  display: none;
+}
+
+/* scanning shimmer state */
+.scanning {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 56px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  background: var(--ink-2);
+}
+.shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(95, 227, 176, 0.12) 45%,
+    rgba(232, 180, 85, 0.12) 55%,
+    transparent 80%
+  );
+  transform: translateX(-100%);
+}
+.scanText {
+  font-family: var(--font-mono);
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  z-index: 1;
+}
+.scanIcon {
+  font-size: 2rem;
+  z-index: 1;
+}
+
+.gamePick {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gamePickChips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.retry {
+  align-self: flex-start;
+}
+.scanError {
+  color: var(--loss);
+  font-size: 0.9rem;
+}

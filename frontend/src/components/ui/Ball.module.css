@@ -1,0 +1,85 @@
+.ball {
+  --ball-size: 40px;
+  --ball-bg: var(--ivory);
+  --ball-fg: var(--ink);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ball-size);
+  height: var(--ball-size);
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 32% 26%,
+      rgba(255, 255, 255, 0.95),
+      var(--ball-bg) 46%,
+      color-mix(in srgb, var(--ball-bg) 82%, #000 18%) 100%
+    );
+  color: var(--ball-fg);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  line-height: 1;
+  flex: 0 0 auto;
+  box-shadow:
+    inset 0 -3px 6px rgba(0, 0, 0, 0.28),
+    inset 0 2px 3px rgba(255, 255, 255, 0.7),
+    0 4px 10px -4px rgba(0, 0, 0, 0.7);
+  user-select: none;
+}
+
+/* Specular top highlight to read as a sphere */
+.ball::after {
+  content: '';
+  position: absolute;
+  top: 12%;
+  left: 20%;
+  width: 34%;
+  height: 26%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent 70%);
+  pointer-events: none;
+}
+
+.num {
+  position: relative;
+  z-index: 1;
+}
+
+/* size variants */
+.sm {
+  --ball-size: 28px;
+  font-size: 0.72rem;
+}
+.md {
+  --ball-size: 40px;
+  font-size: 0.95rem;
+}
+.lg {
+  --ball-size: 56px;
+  font-size: 1.3rem;
+}
+
+/* colored ring for special / win balls */
+.special {
+  --ball-bg: #fdf5df;
+  box-shadow:
+    inset 0 -3px 6px rgba(0, 0, 0, 0.28),
+    inset 0 2px 3px rgba(255, 255, 255, 0.7),
+    0 0 0 2px var(--brass),
+    0 4px 12px -4px rgba(232, 180, 85, 0.5);
+}
+.special .num {
+  color: var(--brass-deep);
+}
+
+.win {
+  box-shadow:
+    inset 0 -3px 6px rgba(0, 0, 0, 0.28),
+    inset 0 2px 3px rgba(255, 255, 255, 0.7),
+    0 0 0 2px var(--mint),
+    0 0 18px -2px rgba(95, 227, 176, 0.7);
+}
+.win .num {
+  color: var(--mint-deep);
+}

@@ -1,0 +1,110 @@
+.wrap {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  filter: saturate(0.9);
+  pointer-events: none;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(600px 400px at 50% 20%, rgba(95, 227, 176, 0.12), transparent 70%),
+    radial-gradient(700px 500px at 50% 100%, rgba(232, 180, 85, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+  width: min(420px, 100%);
+  padding: 34px 30px 30px;
+  border-radius: var(--r-card);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.star {
+  color: var(--brass);
+  filter: drop-shadow(0 0 6px rgba(232, 180, 85, 0.5));
+}
+.brandText {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+
+.title {
+  font-size: 1.9rem;
+  margin-bottom: 6px;
+}
+.subtitle {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+.field {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.62rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+.input {
+  height: 46px;
+  padding: 0 14px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: var(--ink-2);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color var(--dur) var(--ease);
+}
+.input:focus {
+  border-color: rgba(95, 227, 176, 0.5);
+}
+
+.error {
+  color: var(--loss);
+  font-size: 0.82rem;
+  margin: 4px 0 12px;
+}
+
+.hint {
+  margin-top: 18px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
