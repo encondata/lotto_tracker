@@ -15,6 +15,8 @@ class Settings(BaseSettings):
     # so a plain comma-separated string like "*" or "http://a,http://b" is accepted
     # and split by the validator below (bare "*" is not valid JSON).
     cors_allow_origins: Annotated[list[str], NoDecode] = ["*"]
+    ocr_provider: str = "mock"
+    media_dir: str = "media"
 
     @field_validator("cors_allow_origins", mode="before")
     @classmethod
