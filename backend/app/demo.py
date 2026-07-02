@@ -23,7 +23,7 @@ from app.schemas.ticket import PlayLineIn, TicketCreate
 from app.seed import seed_reference_data
 from app.services.tickets import create_ticket
 
-DEMO_EMAIL = "demo@lotto.local"
+DEMO_EMAIL = "demo@lottotracker.io"
 
 # Tickets crafted against seeded demo draws:
 #   powerball 2026-06-30 -> [3,19,24,46,55] PB 7 (x3)

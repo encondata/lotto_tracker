@@ -5,9 +5,11 @@ from app.db import SessionLocal
 from app.models.user import User
 from app.security import hash_password
 
+# NB: emails must use a non-reserved domain — the email-validator library
+# rejects special-use TLDs like .local, so those addresses can't log in.
 DEMO_USERS = [
-    ("admin@lotto.local", "admin12345", "Admin", "admin"),
-    ("demo@lotto.local", "demo12345", "Demo User", "user"),
+    ("admin@lottotracker.io", "admin12345", "Admin", "admin"),
+    ("demo@lottotracker.io", "demo12345", "Demo User", "user"),
 ]
 
 
@@ -29,4 +31,4 @@ def ensure_demo_users(db: Session) -> None:
 if __name__ == "__main__":
     with SessionLocal() as s:
         ensure_demo_users(s)
-        print("Demo users ensured: admin@lotto.local / demo@lotto.local")
+        print("Demo users ensured: admin@lottotracker.io / demo@lottotracker.io")
