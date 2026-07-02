@@ -38,6 +38,7 @@ Three-tier, containerized (`docker compose up`).
 - **Scheduler** — APScheduler (in-process) running the `results` → `matching` pipeline per each game's draw schedule; idempotent.
 - **Database** — PostgreSQL via SQLAlchemy + Alembic migrations.
 - **Image storage** — local media volume keyed by user; schema ready to swap to S3-compatible storage later.
+- **CORS (dev):** backend allows all origins (`allow_origins=["*"]`, or reflect any origin) so the app can be tested from a phone and a laptop on the LAN. This is a dev-friendly default; the setting is env-driven so it can be locked to specific origins in production.
 
 ## 3. Data model
 
